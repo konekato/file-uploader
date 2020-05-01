@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Uploads{% endblock %}
+
+{% block content %}
+
+{% for detail in details %}
+<hr>
+<h2>{{ detail.title }}</h2>
+<p>{{ detail.text }}</p>
+{% endfor %}
+
+{% endblock %}

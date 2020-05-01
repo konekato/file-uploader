@@ -1,3 +1,12 @@
 from django.shortcuts import render
+from .models import UploadDetail, UploadFile
 
-# Create your views here.
+
+def home(request):
+    return render(request, 'home.html')
+
+def upload_details(request):
+    details = UploadDetail.objects.order_by('-id')
+    return render(request, 'upload_details.html',context={
+        'details': details,
+    })
