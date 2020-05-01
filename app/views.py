@@ -10,3 +10,9 @@ def upload_details(request):
     return render(request, 'upload_details.html',context={
         'details': details,
     })
+
+def upload_file(request, detail_id):
+    detail = UploadDetail.objects.get(id=detail_id)
+    return render(request, 'upload_file.html', context={
+        'detail': detail,
+    })
