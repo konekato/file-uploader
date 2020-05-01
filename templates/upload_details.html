@@ -6,8 +6,10 @@
 
 {% for detail in details %}
 <hr>
+<a href="{% url 'app:upload_file' detail.id %}">
 <h2>{{ detail.title }}</h2>
 <p>{{ detail.text }}</p>
+</a>
 {% endfor %}
 
 {% endblock %}
