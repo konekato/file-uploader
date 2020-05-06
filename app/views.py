@@ -14,17 +14,18 @@ def upload_details(request):
     })
 
 def upload_file(request, detail_id):
+    user_id = request.user.id
+
     detail = UploadDetail.objects.get(id=detail_id)
     form = UploadFileForm()
+    uploaded_files = UploadFile.objects.filter(detail_id=detail_id, user_id=user_id)
 
     # POSTED
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
-        print(form)
-        print(form.is_bound)
         if form.is_valid():
             obj = form.save(commit=False)
-            obj.user_id = request.user.id
+            obj.user_id = user_id
             obj.detail_id = detail_id
             obj.save()
             return HttpResponseRedirect(reverse('home'))
@@ -34,4 +35,5 @@ def upload_file(request, detail_id):
     return render(request, 'upload_file.html', context={
         'detail': detail,
         'form': form,
+        'uploaded_files': uploaded_files,
     })

@@ -15,3 +15,6 @@ class UploadFile(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     detail = models.ForeignKey(UploadDetail, on_delete=models.CASCADE)
     created = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.file.url

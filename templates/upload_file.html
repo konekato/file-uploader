@@ -14,4 +14,10 @@
     <button type="submit">アップロード</button>
 </form>
 
+<hr>
+<h3>履歴</h3>
+{% for uploaded in uploaded_files %}
+<p><a href='{{uploaded.file.url}}'>{{ uploaded.file }}</a> {{ uploaded.created }}</p>
+{% endfor %}
+
 {% endblock %}
