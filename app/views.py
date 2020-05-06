@@ -18,7 +18,7 @@ def upload_file(request, detail_id):
 
     detail = UploadDetail.objects.get(id=detail_id)
     form = UploadFileForm()
-    uploaded_files = UploadFile.objects.filter(detail_id=detail_id, user_id=user_id)
+    uploaded_files = UploadFile.objects.filter(detail_id=detail_id, user_id=user_id).order_by('-id')
 
     # POSTED
     if request.method == 'POST':
