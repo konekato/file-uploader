@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}History{% endblock %}
+
+{% block content %}
+<hr>
+<h2>履歴</h2>
+{% for uploaded in uploaded_files %}
+<p><a href="{% url 'app:upload_file' uploaded.detail.id %}">{{ uploaded.detail.title }}</a> <a href="{{uploaded.file.url}}">{{ uploaded.file }}</a> {{ uploaded.created }}</p>
+{% endfor %}
+
+{% endblock %}

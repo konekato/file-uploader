@@ -37,3 +37,12 @@ def upload_file(request, detail_id):
         'form': form,
         'uploaded_files': uploaded_files,
     })
+
+def upload_history(request):
+    user_id = request.user.id
+
+    uploaded_files = UploadFile.objects.filter(user_id=user_id).order_by('-id')
+
+    return render(request, 'upload_history.html', context={
+        'uploaded_files': uploaded_files,
+    })
