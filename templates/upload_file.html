@@ -8,4 +8,10 @@
 <h2>{{ detail.title }}</h2>
 <p>{{ detail.text }}</p>
 
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>{{ form.file }}</p>
+    <button type="submit">アップロード</button>
+</form>
+
 {% endblock %}
