@@ -5,17 +5,21 @@ from .models import UploadDetail, UploadFile
 from .forms import UploadFileForm
 
 def home(request):
-    return render(request, 'home.html')
+    details = UploadDetail.objects.order_by('-id')
+    return render(request, 'home.html', context={
+        'details': details,
+    })
 
 def upload_details(request):
     details = UploadDetail.objects.order_by('-id')
-    return render(request, 'upload_details.html',context={
+    return render(request, 'upload_details.html', context={
         'details': details,
     })
 
 def upload_file(request, detail_id):
     user_id = request.user.id
 
+    details = UploadDetail.objects.order_by('-id')
     detail = UploadDetail.objects.get(id=detail_id)
     form = UploadFileForm()
     uploaded_files = UploadFile.objects.filter(detail_id=detail_id, user_id=user_id).order_by('-id')
@@ -33,6 +37,7 @@ def upload_file(request, detail_id):
             print('error')
 
     return render(request, 'upload_file.html', context={
+        'details': details,
         'detail': detail,
         'form': form,
         'uploaded_files': uploaded_files,
@@ -41,8 +46,10 @@ def upload_file(request, detail_id):
 def upload_history(request):
     user_id = request.user.id
 
+    details = UploadDetail.objects.order_by('-id')
     uploaded_files = UploadFile.objects.filter(user_id=user_id).order_by('-id')
 
     return render(request, 'upload_history.html', context={
+        'details': details,
         'uploaded_files': uploaded_files,
     })

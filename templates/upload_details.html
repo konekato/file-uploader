@@ -4,12 +4,18 @@
 
 {% block content %}
 
-{% for detail in details %}
-<hr>
-<a href="{% url 'app:upload_file' detail.id %}">
-<h2>{{ detail.title }}</h2>
-<p>{{ detail.text }}</p>
-</a>
-{% endfor %}
+<section class="section">
+    <div class="container is-fluid">
+        <h1 class="title has-text-weight-bold">Uploads</h1>
+        {% for detail in details %}
+        <div class="notification">
+            <a href="{% url 'app:upload_file' detail.id %}">
+                <h2 class="title is-gapless">{{ detail.title }}</h2>
+            </a>
+            <h3 class="subtitle">{{ detail.text }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+</section>
 
 {% endblock %}
