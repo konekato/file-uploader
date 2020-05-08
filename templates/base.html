@@ -54,6 +54,7 @@
                         <li><a class="has-text-white" href="{% url 'app:upload_file' detail.id %}" onmouseout="this.style.background=''" onmouseover="this.style.background='grey'">{{ detail.title }}</a></li>
                         {% endfor %}
                     </ul>
+                    <a class="has-text-white" href="{% url 'app:upload_history' %}" onmouseout="this.style.background=''" onmouseover="this.style.background='grey'">History</a>
                 </li>
             </ul>
         </aside>

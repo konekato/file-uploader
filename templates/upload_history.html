@@ -3,10 +3,36 @@
 {% block title %}History{% endblock %}
 
 {% block content %}
-<hr>
-<h2>履歴</h2>
-{% for uploaded in uploaded_files %}
-<p><a href="{% url 'app:upload_file' uploaded.detail.id %}">{{ uploaded.detail.title }}</a> <a href="{{uploaded.file.url}}">{{ uploaded.file }}</a> {{ uploaded.created }}</p>
-{% endfor %}
+<section class="section">
+    <div class="container is-fluid">
+        <h1 class="title is-1 has-text-white">History</h1>
+    </div>
+    <br>
+    {% if uploaded_files %}
+    <div class="columns">
+        <div class="column is-1"></div>
+        <div class="column is-10">
+            <table class="table has-background-dark is-fullwidth">
+                <thead>
+                    <tr>
+                        <th class="has-text-white">提出場所</th>
+                        <th class="has-text-white">ファイル名</th>
+                        <th class="has-text-white">提出日時</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for uploaded in uploaded_files %}
+                    <tr>
+                        <th class="has-text-white"><a href="{% url 'app:upload_file' uploaded.detail.id %}" onmouseout="this.style.color=''" onmouseover="this.style.color='skyblue'">{{ uploaded.detail.title }}</a></th>
+                        <th class="has-text-white"><a href='{{uploaded.file.url}}' target="_blank" rel="noopener noreferrer" onmouseout="this.style.color=''" onmouseover="this.style.color='skyblue'">{{ uploaded.file }}</a></th>
+                        <th class="has-text-white">{{ uploaded.created }}</th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% endif %}
+</section>
 
 {% endblock %}
