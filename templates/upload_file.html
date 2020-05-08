@@ -13,20 +13,47 @@ function check(){
 {% endblock %}
 
 {% block content %}
-<hr>
-<h2>{{ detail.title }}</h2>
-<p>{{ detail.text }}</p>
 
-<form action="" method="POST" enctype="multipart/form-data" onSubmit="return check()">
-    {% csrf_token %}
-    <p>{{ form.file }}</p>
-    <button type="submit">アップロード</button>
-</form>
-
-<hr>
-<h3>履歴</h3>
-{% for uploaded in uploaded_files %}
-<p><a href='{{uploaded.file.url}}'>{{ uploaded.file }}</a> {{ uploaded.created }}</p>
-{% endfor %}
+<section class="section">
+    <div class="container is-fluid">
+        <h1 class="title is-1 has-text-white">File Upload</h1>
+        <div class="notification">
+            <h2 class="title is-2">{{ detail.title }}</h2>
+            <br>
+            <h3 class="subtitle is-4">{{ detail.text }}</h3>
+        </div>
+        <form action="" method="POST" enctype="multipart/form-data" onSubmit="return check()">
+            {% csrf_token %}
+            <p class="has-text-warning">{{ form.file }}</p>
+            <br>
+            <button type="submit" class="button is-light">Submit</button>
+        </form>
+    </div>
+    <hr>
+    <h3 class="subtitle has-text-white has-text-centered">提出履歴</h3>
+    {% if uploaded_files %}
+    <div class="columns">
+        <div class="column is-one-fifth"></div>
+        <div class="column is-three-fifths">
+            <table class="table has-background-dark is-fullwidth">
+                <thead>
+                    <tr>
+                    <th class="has-text-white">ファイル名</th>
+                    <th class="has-text-white">提出日時</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for uploaded in uploaded_files %}
+                <tr>
+                    <th class="has-text-white"><a href='{{uploaded.file.url}}' target="_blank" rel="noopener noreferrer" onmouseout="this.style.color=''" onmouseover="this.style.color='skyblue'">{{ uploaded.file }}</a></th>
+                    <th class="has-text-white">{{ uploaded.created }}</th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+    {% endif %}
+</section>
 
 {% endblock %}

@@ -6,13 +6,14 @@
 
 <section class="section">
     <div class="container is-fluid">
-        <h1 class="title has-text-weight-bold">Uploads</h1>
+        <h1 class="title is-1 has-text-weight-bold has-text-white">Uploads</h1>
         {% for detail in details %}
-        <div class="notification">
-            <a href="{% url 'app:upload_file' detail.id %}">
-                <h2 class="title is-gapless">{{ detail.title }}</h2>
+        <div class="notification" onmouseout="this.style.background=''" onmouseover="this.style.background='white'">
+            <a href="{% url 'app:upload_file' detail.id %}" style="text-decoration: none;" onmouseout="this.style.color=''" onmouseover="this.style.color='grey'">
+                <h2 class="title">{{ detail.title }}</h2>
             </a>
-            <h3 class="subtitle">{{ detail.text }}</h3>
+            <br>
+            <h3 class="subtitle is-5">{{ detail.text }}</h3>
         </div>
         {% endfor %}
     </div>

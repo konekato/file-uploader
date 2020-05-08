@@ -13,8 +13,8 @@
     <nav id="navbar" class="navbar is-spaced has-background-grey-dark">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item has-text-white" href="{% url 'home' %}" style="">
-                App
+                <a class="navbar-item has-text-white has-text-centered title has-text-weight-bold" href="{% url 'home' %}">
+                FILE UPLOADER
                 </a>
             </div>
             <div id="navbarBasicExample" class="navbar-menu">
@@ -23,7 +23,7 @@
                         <div class="buttons"> 
                             <a
                             {% if user.is_authenticated %}
-                            href="{% url 'logout' %}" class="button is-danger">
+                            href="{% url 'logout' %}" class="button is-warning">
                                 Logout
                             {% else %}
                             href="{% url 'login' %}" class="button is-primary">
@@ -36,12 +36,14 @@
             </div>
         </div>
     </nav>
+
+    {% if user.is_authenticated %}
     <div class="columns">
         <aside class="column is-2 is-fullheight menu has-background-grey-dark">
             <ul class="menu-list">
                 <li><a class="has-text-white" href="{% url 'home' %}" onmouseout="this.style.background=''" onmouseover="this.style.background='grey'">Home</a></li>
             </ul>
-            <p class="menu-label has-text-white">
+            <p class="menu-label has-text-warning">
                 Upload
             </p>
             <ul class="menu-list">
@@ -59,7 +61,27 @@
             {% block content %}{% endblock %}
         </div>
     </div>
+    {% else %}
+    <div class="columns has-background-dark">
+        <div class="column is-4"></div>
+        <div class="column is-4 section">
+            <div class="container is-widescreen">
+                <div class="notification">
+                    {% block register %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 </div>
 </body>
+
+<footer class="footer has-background-grey-dark">
+    <div class="content has-text-centered">
+      <p>
+        <strong>&copy; 2020 konekato</strong>
+      </p>
+    </div>
+</footer>
 
 </html>

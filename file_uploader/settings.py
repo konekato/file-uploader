@@ -20,6 +20,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'app',
+    'widget_tweaks',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -94,7 +95,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
@@ -132,3 +133,5 @@ LOGGING = {
 
 # After login, to
 LOGIN_REDIRECT_URL = '/home/'
+
+LOGOUT_REDIRECT_URL = '/login/'
