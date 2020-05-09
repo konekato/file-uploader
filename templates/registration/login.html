@@ -5,18 +5,7 @@
 
 {% block body %}
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
- 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
+
 <div class="column is-4"></div>
 <div class="column is-4 section">
     <div class="container is-widescreen">
@@ -26,6 +15,26 @@
             <div class="columns">
                 <div class="column is-3"></div>
                 <div class="column is-6">
+                {% if user.is_authenticated %}
+                    <p class="subtitle is-4 has-text-danger has-text-centered">Already Logged in!</p>
+                    <p class="buttons">
+                        <button class="button"><a href="{% url 'home' %}">
+                            <span class="icon">
+                                <i class="fas fa-arrow-left"></i>
+                            </span>
+                            <span>Home</span>
+                        </a></button>
+                        <button class="button"><a href="{% url 'logout' %}">
+                            <span>Logout</span>
+                            <span class="icon">
+                                <i class="fas fa-arrow-right"></i>
+                            </span>
+                        </a></button>
+                    </p>
+                {% else %}
+                    {% if form.errors %}
+                    <p class="has-text-weight-bold has-text-danger">Your username and password didn't match. Please try again.</p>
+                    {% endif %}
                     <form method="POST" action="{% url 'login' %}">
                         {% csrf_token %}
                         <div class="field">
@@ -42,6 +51,7 @@
                         </div>
                         <hr>
                     </form>
+                {% endif %}
                 </div>
             </div>
         </div>
