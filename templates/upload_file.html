@@ -19,6 +19,22 @@ function check(){
     <h2 class="title is-2">{{ detail.title }}</h2>
     <br>
     <h3 class="subtitle is-4">{{ detail.text }}</h3>
+    
+    {% if uploaded_files %}
+    <div class="has-text-info">
+        <span class="icon">
+            <i class="fas fa-lg fa-check-circle"></i>
+        </span>
+        Already submitted
+    </div>
+    {% else %}
+    <div class="has-text-danger">
+        <span class="icon">
+            <i class="fas fa-lg fa-exclamation-circle"></i>
+        </span>
+        Not yet
+    </div>
+    {% endif %}
 </div>
 <form action="" method="POST" enctype="multipart/form-data" onSubmit="return check()">
     {% csrf_token %}
