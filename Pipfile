@@ -4,6 +4,8 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+flake8 = "*"
+autopep8 = "*"
 
 [packages]
 django-widget-tweaks = "*"
@@ -11,3 +13,8 @@ django = "==3.0.2"
 
 [requires]
 python_version = "3.7"
+
+[scripts]
+local = "python3 manage.py runserver"
+lint = "flake8 ."
+fix = "autopep8 -ivr ."
