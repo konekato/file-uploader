@@ -9,7 +9,6 @@
 </head>
 
 <body>
-<div>
     <nav id="navbar" class="navbar is-spaced has-background-grey-dark">
         <div class="container">
             <div class="navbar-brand">
@@ -36,45 +35,9 @@
             </div>
         </div>
     </nav>
-
-    {% if user.is_authenticated %}
-    <div class="columns">
-        <aside class="column is-2 is-fullheight menu has-background-grey-dark">
-            <ul class="menu-list">
-                <li><a class="has-text-white" href="{% url 'home' %}" onmouseout="this.style.background=''" onmouseover="this.style.background='grey'">Home</a></li>
-            </ul>
-            <p class="menu-label has-text-warning">
-                Upload
-            </p>
-            <ul class="menu-list">
-                <li>
-                    <a class="has-text-white" href="{% url 'app:upload_details' %}" onmouseout="this.style.background=''" onmouseover="this.style.background='grey'">Uploads</a>
-                    <ul>
-                        {% for detail in details %}
-                        <li><a class="has-text-white" href="{% url 'app:upload_file' detail.id %}" onmouseout="this.style.background=''" onmouseover="this.style.background='grey'">{{ detail.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-                    <a class="has-text-white" href="{% url 'app:upload_history' %}" onmouseout="this.style.background=''" onmouseover="this.style.background='grey'">History</a>
-                </li>
-            </ul>
-        </aside>
-        <div class="column is-10 has-background-dark">
-            {% block content %}{% endblock %}
-        </div>
+    <div class="columns has-background-dark" style="margin: 0;">
+        {% block body %}{% endblock %}
     </div>
-    {% else %}
-    <div class="columns has-background-dark">
-        <div class="column is-4"></div>
-        <div class="column is-4 section">
-            <div class="container is-widescreen">
-                <div class="notification">
-                    {% block register %}{% endblock %}
-                </div>
-            </div>
-        </div>
-    </div>
-    {% endif %}
-</div>
 </body>
 
 <footer class="footer has-background-grey-dark">
