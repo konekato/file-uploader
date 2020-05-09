@@ -5,13 +5,31 @@
 {% block page_title %}Uploads{% endblock %}
 
 {% block inner_content %}
-{% for detail in details %}
-<div class="notification" onmouseout="this.style.background=''" onmouseover="this.style.background='white'">
-    <a href="{% url 'app:upload_file' detail.id %}" style="text-decoration: none;" onmouseout="this.style.color=''" onmouseover="this.style.color='grey'">
-        <h2 class="title">{{ detail.title }}</h2>
-    </a>
-    <br>
-    <h3 class="subtitle is-5">{{ detail.text }}</h3>
+<div class="columns">
+    <div class="column is-full">    
+        <table class="table is-hoverable">
+            <tbody>
+                {% for detail in details %}
+                <tr>
+                    <td>
+                        <span class="icon is-medium">
+                            <i class="fab fa-2x fa-github"></i>
+                        </span>
+                    </td>
+                    <td>
+                        <p class="has-text-weight-bold">
+                            <a href="{% url 'app:upload_file' detail.id %}">
+                                {{ detail.title|truncatechars:100 }}
+                            </a>
+                        </p>
+                        <p class="is-size-7">
+                            {{ detail.text|truncatechars:200 }}
+                        </p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
-{% endfor %}
 {% endblock %}
