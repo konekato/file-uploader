@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 
+
 class UploadDetail(models.Model):
     title = models.CharField(max_length=50)
     text = models.TextField(null=True)
@@ -9,6 +10,7 @@ class UploadDetail(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class UploadFile(models.Model):
     file = models.FileField()
