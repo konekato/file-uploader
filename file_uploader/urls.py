@@ -9,6 +9,7 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('', views.home, name='home'),
     path('home/', views.home, name='home'),
+    path('profile/', views.user_profile, name='profile'),
     path('uploads/', include('app.urls'))
 ]
 

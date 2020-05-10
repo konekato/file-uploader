@@ -11,7 +11,10 @@ def home(request):
         'details': details,
     })
 
+def user_profile(request):
+    return render(request, 'user_profile.html')
 
+# app
 def upload_details(request):
     details = UploadDetail.objects.order_by('-id')
     return render(request, 'upload_details.html', context={
