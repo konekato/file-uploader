@@ -12,11 +12,15 @@
                 {% for detail in details %}
                 <tr>
                     <td>
-                        <span class="icon is-medium">
-                            {% if detail.file %}
-                            <i class="fab fa-2x fa-github"></i>
-                            {% endif %}
+                        {% if detail.file %}
+                        <span class="icon is-medium has-text-info" data-tooltip="Already submitted">
+                            <i class="fas fa-lg fa-check-circle"></i>
                         </span>
+                        {% else %}
+                        <span class="icon is-medium has-text-danger" data-tooltip="Not yet">
+                            <i class="fas fa-lg fa-exclamation-circle"></i>
+                        </span>
+                        {% endif %}
                     </td>
                     <td>
                         <p class="has-text-weight-bold">
