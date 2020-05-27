@@ -19,7 +19,13 @@ def user_profile(request):
 
 # app
 def upload_details(request):
-    details = UploadDetail.objects.order_by('-id')
+    q = (
+        "SELECT app_uploaddetail.*, app_uploadfile.file from app_uploaddetail "
+        "LEFT OUTER JOIN app_uploadfile ON app_uploaddetail.id = app_uploadfile.detail_id "
+        "AND app_uploadfile.user_id = %s "
+        "GROUP BY app_uploaddetail.id"
+    )
+    details = UploadDetail.objects.raw(q, [request.user.id])
     return render(request, 'upload_details.html', context={
         'details': details,
     })
